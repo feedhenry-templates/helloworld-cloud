@@ -3,6 +3,6 @@
   "type": "cloud_nodejs",
   "repoUrl": "https://github.com/feedhenry/fh-cloud-mbaas-instance-blank.git",
   "repoBranch": "refs/heads/master",
-  "icon": "icon-edit",
+  "icon": "icon-cloud",
   "category": "Blank Apps"
 }
