@@ -1,4 +1,5 @@
 {
+  "id": "blank_cloud_mbaas_instance",
   "name": "Blank Cloud MBaaS Instance",
   "type": "cloud_nodejs",
   "docs": "https://raw2.github.com/feedhenry/fh-cloud-mbaas-instance-blank/master/README.md",
