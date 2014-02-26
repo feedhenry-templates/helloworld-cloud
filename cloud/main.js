@@ -1,4 +1,3 @@
-
-exports.helloWorld = function(params, cb){
+exports.hello = function(params, cb){
   cb(null, {msg: 'Hello ' + params.hello});
 };
