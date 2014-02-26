@@ -5,11 +5,11 @@ This is a blank FeedHenry Connector. Use is as a starting point for building Con
 
 # Group Blank Connector API
 
-# helloWorld [/cloud/helloWorld]
+# hello [/cloud/hello]
 
 'Hello world' endpoint.
 
-## helloWorld [POST] 
+## hello [POST] 
 
 'Hello world' endpoint.
 
