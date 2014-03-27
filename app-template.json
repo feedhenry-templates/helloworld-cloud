@@ -2,9 +2,9 @@
   "id": "blank_cloud_mbaas_instance",
   "name": "Blank Cloud MBaaS Instance",
   "type": "cloud_nodejs",
-  "docs": "https://raw2.github.com/feedhenry/fh-cloud-mbaas-instance-blank/master/README.md",
+  "docs": "https://raw2.github.com/feedhenry/fh-cloud-mbaas-instance-blank/6066-connection-bugfixing/README.md",
   "repoUrl": "https://github.com/feedhenry/fh-cloud-mbaas-instance-blank.git",
-  "repoBranch": "refs/heads/master",
+  "repoBranch": "refs/heads/6066-connection-bugfixing",
   "icon": "icon-cloud",
   "category": "Blank Apps"
 }
