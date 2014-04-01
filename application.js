@@ -15,5 +15,5 @@ app.use('/', function(req, res){
 
 var port = process.env.FH_PORT || process.env.VCAP_APP_PORT || 8001;
 module.exports = app.listen(port, function(){
-  console.log("App started at: " + new Date());
+  console.log("App started at: " + new Date() + " on port: " + port);
 });
