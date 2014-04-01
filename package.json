@@ -5,5 +5,13 @@
     "fh-webapp" : "*",
     "fh-api" : "*",
     "express" : "3.3.4"
+  },
+  "devDependencies": {
+    "grunt-env": "~0.4.1",
+    "grunt-contrib-watch": "latest",
+    "grunt-nodemon": "0.2.0",
+    "grunt-concurrent": "latest",
+    "supertest": "0.8.2",
+    "should": "2.1.1"
   }
 }
