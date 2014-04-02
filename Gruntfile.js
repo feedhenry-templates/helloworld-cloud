@@ -39,22 +39,30 @@ module.exports = function(grunt) {
             options: {
                 logConcurrentOutput: true
             }
+        },
+      shell: {
+        turbo: {
+          options: {
+            stdout: true,
+            stderr: true
+          },
+          command: 'env NODE_PATH=. ./node_modules/.bin/turbo test/unit'
         }
+      }
     });
 
     //Load NPM tasks
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-nodemon');
     grunt.loadNpmTasks('grunt-concurrent');
-    grunt.loadNpmTasks('grunt-env');
+    grunt.loadNpmTasks('grunt-shell');
+
+    // turbo task
+    grunt.registerTask('test', ['shell']);
 
     //Making grunt default to force in order not to break the project.
     grunt.option('force', true);
 
     grunt.registerTask('serve', ['concurrent']);
-
     grunt.registerTask('default', ['serve']);
-
-    //Test task - TODO - use turbo here..
-    grunt.registerTask('test', ['env:test']);
 };
