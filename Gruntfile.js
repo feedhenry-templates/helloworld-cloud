@@ -47,6 +47,18 @@ module.exports = function(grunt) {
             stderr: true
           },
           command: 'env NODE_PATH=. ./node_modules/.bin/turbo test/unit'
+        },
+        coverage: {
+          options: {
+            stdout: true,
+            stderr: true
+          },
+          command: [
+                'rm -rf coverage cov-unit',
+                'env NODE_PATH=. ./node_modules/.bin/istanbul cover --dir cov-unit ./node_modules/.bin/turbo -- test/unit',
+                './node_modules/.bin/istanbul report',
+                'echo "See html coverage at: `pwd`/coverage/lcov-report/index.html"'
+            ].join('&&')
         }
       }
     });
@@ -58,7 +70,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-shell');
 
     // turbo task
-    grunt.registerTask('test', ['shell']);
+    grunt.registerTask('test', ['shell:turbo']);
+    grunt.registerTask('coverage', ['shell:coverage']);
 
     //Making grunt default to force in order not to break the project.
     grunt.option('force', true);

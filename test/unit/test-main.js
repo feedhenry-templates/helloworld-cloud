@@ -14,6 +14,8 @@ exports.tearDown = function(finish) {
 
 exports.it_should_test_happy = function(finish) {
 
+  // Note we have no requires in main.js to stub out.
+  // For more information on using proxyquire, see: https://github.com/thlorenz/proxyquire
   var main = proxyquire('lib/main.js', {});
   main.hello({hello: 'world'}, function(err, data) {
     assert.ok(!err, 'Unexpected error: ' + util.inspect(err));
