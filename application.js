@@ -1,6 +1,5 @@
 var webapp = require('fh-webapp');
 var express = require('express');
-$fh = require('fh-api');
 var mainjs = require('./lib/main.js');
 
 var app = express();
@@ -14,7 +13,7 @@ app.use('/', function(req, res){
 });
 
 // Important that this is last!
-//app.use(webapp.errorHandler());
+app.use(webapp.errorHandler());
 
 var port = process.env.FH_PORT || process.env.VCAP_APP_PORT || 8001;
 module.exports = app.listen(port, function(){
