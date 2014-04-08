@@ -25,7 +25,7 @@ module.exports = function(grunt) {
                     args: [],
                     ignore: ['public/**'],
                     ext: 'js,html',
-                    nodeArgs: ['--debug'],
+                    nodeArgs: [],
                     delayTime: 1,
                     env: {
                         PORT: 3000
@@ -63,7 +63,7 @@ module.exports = function(grunt) {
       }
     });
 
-    //Load NPM tasks
+    // Load NPM tasks
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-nodemon');
     grunt.loadNpmTasks('grunt-concurrent');

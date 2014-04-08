@@ -1,6 +1,7 @@
 var mbaas = require('fh-mbaas-express');
 var express = require('express');
 var mainjs = require('./lib/main.js');
+var cors = require('cors');
 
 // Cluster related
 var cluster = require('cluster');
@@ -9,16 +10,24 @@ var workerId = process.env.NODE_WORKER_ID || 0;
 
 var server;
 var app = express();
+
+app.use(mbaas.analytics());
 app.use('/sys', mbaas.sys(mainjs));
 app.use('/mbaas', mbaas.mbaas);
 app.use('/cloud', mbaas.cloud(mainjs));
+
+app.use(express.bodyParser());
+app.use(cors());
+
+// Our restful hello api route
+app.use('/helloapi', require('./lib/hello.js').middleware);
 
 // You can define custom URL handlers here, like this one:
 app.use('/', function(req, res){
   res.end('Your Cloud App is Running');
 });
 
-// Important that this is last!
+// Error handling - important that this is last!
 app.use(mbaas.errorHandler());
 
 // Start a worker process

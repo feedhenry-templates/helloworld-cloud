@@ -4,14 +4,15 @@
   "dependencies": {
     "express": "3.3.4",
     "fh-mbaas-api": "3.0.0-beta1",
-    "fh-mbaas-express": "3.0.0-beta2"
+    "fh-mbaas-express": "3.0.0-beta2",
+    "cors": "2.2.0"
   },
   "devDependencies": {
     "grunt-contrib-watch": "latest",
     "grunt-nodemon": "0.2.0",
     "grunt-concurrent": "latest",
     "supertest": "0.8.2",
-    "should": "2.1.1", 
+    "should": "2.1.1",
     "turbo-test-runner": "0.3.3",
     "proxyquire": "0.5.3",
     "grunt-shell": "0.6.4",
