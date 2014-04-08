@@ -1,11 +1,11 @@
-var webapp = require('fh-webapp');
+var mbaas = require('fh-mbaas-express');
 var express = require('express');
 var mainjs = require('./lib/main.js');
 
 var app = express();
-app.use('/sys', webapp.sys(mainjs));
-app.use('/mbaas', webapp.mbaas);
-app.use('/cloud', webapp.cloud(mainjs));
+app.use('/sys', mbaas.sys(mainjs));
+app.use('/mbaas', mbaas.mbaas);
+app.use('/cloud', mbaas.cloud(mainjs));
 
 // You can define custom URL handlers here, like this one:
 app.use('/', function(req, res){
@@ -13,7 +13,7 @@ app.use('/', function(req, res){
 });
 
 // Important that this is last!
-app.use(webapp.errorHandler());
+app.use(mbaas.errorHandler());
 
 var port = process.env.FH_PORT || process.env.VCAP_APP_PORT || 8001;
 module.exports = app.listen(port, function(){
