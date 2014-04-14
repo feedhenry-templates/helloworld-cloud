@@ -1,9 +1,8 @@
-# Blank FeedHenry Connector
+# FeedHenry Hello World MBaaS Server
 
-This is a blank FeedHenry Connector. Use is as a starting point for building Connectors. 
+This is a blank 'hello world' FeedHenry MBaaS. Use is as a starting point for building your APIs. 
 
-
-# Group Blank Connector API
+# Group Hello World API
 
 # hello [/cloud/hello]
 
