@@ -27,5 +27,20 @@ This App uses [Istanbul](https://github.com/gotwarlost/istanbul) for generating 
 
 Run ```grunt coverage``` to run code coverage for this App.
 
+## Environment variables
+
+The [grunt env](https://www.npmjs.org/package/grunt-env) plugin is included by default. To set your own environment variables, modify the `env` config accordingly, e.g.
+
+```
+ env : {
+      options : {},
+      // Sample environment variable - see https://github.com/jsoverson/grunt-env for more information
+      local : {
+        SAMPLE_ENV_VAR : 'sample-env-var'
+      }
+    },
+```
+
+Alternatively you can load environment variables from a local file, see the `grunt env` [documentation](https://www.npmjs.org/package/grunt-env#using-external-files) for more details.
 
 
