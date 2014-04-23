@@ -16,6 +16,6 @@ app.use('/', function(req, res){
 app.use(mbaas.errorHandler());
 
 var port = process.env.FH_PORT || process.env.VCAP_APP_PORT || 8001;
-server = app.listen(port, function(){
+var server = app.listen(port, function(){
   console.log("App started at: " + new Date() + " on port: " + port);
 });
