@@ -1,11 +1,30 @@
 var mbaas = require('fh-mbaas-express');
 var express = require('express');
-var mainjs = require('./lib/main.js');
+var fs = require('fs');
+var mainjs;
+
+if (fs.existsSync('./lib/main.js')) {
+  mainjs = require('./lib/main.js');
+}
+
+// Securable endpoints: list the endpoints which you want to make securable here
+var securableEndpoints = ['hello'];
 
 var app = express();
-app.use('/sys', mbaas.sys(mainjs));
+
+// Note: the order which we add middleware to Express here is important!
+app.use('/sys', mbaas.sys(mainjs, securableEndpoints));
 app.use('/mbaas', mbaas.mbaas);
-app.use('/cloud', mbaas.cloud(mainjs));
+
+// Note: important that this is added just before your own Routes
+app.use(mbaas.fhmiddleware());
+
+// Backward compatability - if main.js exists, mount it on /cloud, otherwise mount hello.js
+if (mainjs) {
+  app.use('/cloud', mbaas.cloud(mainjs));
+} else {
+  app.use('/cloud', require('./lib/hello.js')());
+}
 
 // You can define custom URL handlers here, like this one:
 app.use('/', function(req, res){
