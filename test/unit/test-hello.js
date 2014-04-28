@@ -24,30 +24,29 @@ exports.it_should_test_happy_GET = function(finish) {
       hello: 'test get'
     },
     method: 'GET',
-    url: '/hello',
-    headers: []
+    url: '/',
+    headers: [],
+    pause: function(){},
+    resume: function(){}
   };
 
   // mock response
   var endCalled = false;
   var res = {
-    writeHead: function(code, headers) {
-
-    },
-    end: function(body) {
-      var data = JSON.parse(body);
+    json: function(data) {
       assert.equal(data.msg, 'Hello test get');
       endCalled = true;
       finish();
-    }
+    },
+    setHeader: function(){}
   };
 
   // Invoke the /hello route, note the test finishes when the 'end' is called on our mock response above.
   hello(req, res, function next(err){
     assert.ok(!err, 'Unexpected error: ' + util.inspect(err));
   });
-
 };
+
 
 exports.it_should_test_happy_POST = function(finish) {
 
@@ -61,27 +60,25 @@ exports.it_should_test_happy_POST = function(finish) {
       hello: 'test post'
     },
     method: 'POST',
-    url: '/hello',
-    headers: []
+    url: '/',
+    headers: [],
+    pause: function(){},
+    resume: function(){}
   };
 
   // mock response
   var endCalled = false;
   var res = {
-    writeHead: function(code, headers) {
-
-    },
-    end: function(body) {
-      var data = JSON.parse(body);
+    json: function(data) {
       assert.equal(data.msg, 'Hello test post');
       endCalled = true;
       finish();
-    }
+    },
+    setHeader: function(){}
   };
 
   // Invoke the /hello route, note the test finishes when the 'end' is called on our mock response above.
   hello(req, res, function next(err){
     assert.ok(!err, 'Unexpected error: ' + util.inspect(err));
   });
-
 };
