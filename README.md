@@ -4,7 +4,7 @@ This is a blank 'hello world' FeedHenry MBaaS. Use is as a starting point for bu
 
 # Group Hello World API
 
-# hello [/cloud/hello]
+# hello [/hello]
 
 'Hello world' endpoint.
 
