@@ -90,11 +90,7 @@ module.exports = function(grunt) {
   });
 
   // Load NPM tasks
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-nodemon');
-  grunt.loadNpmTasks('grunt-concurrent');
-  grunt.loadNpmTasks('grunt-shell');
-  grunt.loadNpmTasks('grunt-env');
+  require('load-grunt-tasks')(grunt, {scope: 'devDependencies'});
 
   // Testing tasks
   grunt.registerTask('test', ['shell:unit', 'shell:accept']);
