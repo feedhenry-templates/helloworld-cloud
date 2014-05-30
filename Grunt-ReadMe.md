@@ -31,6 +31,10 @@ This App uses [Istanbul](https://github.com/gotwarlost/istanbul) for generating 
 
 Run ```grunt coverage``` to run code coverage for this App.
 
+## grunt analysis
+
+Run ```grunt analysis``` to get a static analysis report of your code. This task uses [Plato](https://github.com/es-analysis/plato) to generate the report. See the documentaion for [Plato](https://github.com/es-analysis/plato) for more information on how to use and configure Plato.
+
 ## Environment variables
 
 The [grunt env](https://www.npmjs.org/package/grunt-env) plugin is included by default. To set your own environment variables, modify the `env` config accordingly, e.g.
