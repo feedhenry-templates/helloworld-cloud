@@ -102,6 +102,20 @@ module.exports = function(grunt) {
       debug: {
         path: 'http://127.0.0.1:8080/debug?port=5858',
         app: 'Google Chrome'
+      },
+      platoReport: {
+        path: './plato/index.html',
+        app: 'Google Chrome'
+      }
+    },
+    plato: {
+      src: {
+        options : {
+          jshint : grunt.file.readJSON('.jshintrc')
+        },
+        files: {
+          'plato': ['lib/**/*.js']
+        }
       }
     }
   });
@@ -121,6 +135,8 @@ module.exports = function(grunt) {
 
   // Making grunt default to force in order not to break the project.
   grunt.option('force', true);
+
+  grunt.registerTask('analysis', ['plato:src', 'open:platoReport']);
 
   grunt.registerTask('serve', ['env:local', 'concurrent:serve']);
   grunt.registerTask('debug', ['env:local', 'concurrent:debug']);
