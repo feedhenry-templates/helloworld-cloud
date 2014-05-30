@@ -36,7 +36,8 @@ module.exports = function(grunt) {
       }
     },
     concurrent: {
-      tasks: ['nodemon', 'watch'],
+      serve: ['nodemon', 'watch'],
+      debug: ['node-inspector', 'shell:debug', 'open:debug'],
       options: {
         logConcurrentOutput: true
       }
@@ -48,7 +49,16 @@ module.exports = function(grunt) {
         FH_USE_LOCAL_DB: true
       }
     },
+    'node-inspector': {
+      dev: {}
+    },
     shell: {
+      debug: {
+        options: {
+          stdout: true
+        },
+        command: 'env NODE_PATH=. node --debug-brk application.js'
+      },
       unit: {
         options: {
           stdout: true,
@@ -87,6 +97,12 @@ module.exports = function(grunt) {
           'echo "See html coverage at: `pwd`/coverage/lcov-report/index.html"'
         ].join('&&')
       }
+    },
+    open: {
+      debug: {
+        path: 'http://127.0.0.1:8080/debug?port=5858',
+        app: 'Google Chrome'
+      }
     }
   });
 
@@ -106,6 +122,7 @@ module.exports = function(grunt) {
   // Making grunt default to force in order not to break the project.
   grunt.option('force', true);
 
-  grunt.registerTask('serve', ['env:local', 'concurrent']);
+  grunt.registerTask('serve', ['env:local', 'concurrent:serve']);
+  grunt.registerTask('debug', ['env:local', 'concurrent:debug']);
   grunt.registerTask('default', ['serve']);
 };
