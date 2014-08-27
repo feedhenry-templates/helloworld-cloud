@@ -62,21 +62,24 @@ module.exports = function(grunt) {
       unit: {
         options: {
           stdout: true,
-          stderr: true
+          stderr: true,
+          failOnError: true
         },
         command: 'env NODE_PATH=. ./node_modules/.bin/turbo test/unit'
       },
       accept: {
         options: {
           stdout: true,
-          stderr: true
+          stderr: true,
+          failOnError: true
         },
         command: 'env NODE_PATH=. ./node_modules/.bin/turbo --setUp=test/accept/server.js --tearDown=test/accept/server.js test/accept'
       },
       coverage_unit: {
         options: {
           stdout: true,
-          stderr: true
+          stderr: true,
+          failOnError: true
         },
         command: [
           'rm -rf coverage cov-unit',
@@ -88,7 +91,8 @@ module.exports = function(grunt) {
       coverage_accept: {
         options: {
           stdout: true,
-          stderr: true
+          stderr: true,
+          failOnError: true
         },
         command: [
           'rm -rf coverage cov-accept',
