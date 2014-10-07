@@ -3,8 +3,11 @@ var express = require('express');
 var mbaasExpress = mbaasApi.mbaasExpress();
 var cors = require('cors');
 
-// Securable endpoints: list the endpoints which you want to make securable here
-var securableEndpoints = ['hello'];
+// list the endpoints which you want to make securable here
+var securableEndpoints;
+// fhlint-begin: securable-endpoints
+securableEndpoints = ['hello'];
+// fhlint-end
 
 var app = express();
 
@@ -18,12 +21,12 @@ app.use('/mbaas', mbaasExpress.mbaas);
 // Note: important that this is added just before your own Routes
 app.use(mbaasExpress.fhmiddleware());
 
-app.use('/hello', require('./lib/hello.js')());
+// allow serving of static files from the public directory
+app.use(express.static(__dirname + '/public'));
 
-// You can define custom URL handlers here, like this one:
-app.use('/', function(req, res) {
-  res.end('Your Cloud App is Running');
-});
+// fhlint-begin: custom-routes
+app.use('/hello', require('./lib/hello.js')());
+// fhlint-end
 
 // Important that this is last!
 app.use(mbaasExpress.errorHandler());
