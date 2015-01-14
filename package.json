@@ -2,11 +2,12 @@
   "name": "fh-app",
   "version": "0.1.2",
   "dependencies": {
-    "fh-mbaas-api" : "~4.7.0",
-    "request": "~2.40.0",
     "body-parser": "~1.0.2",
+    "cors": "~2.2.0",
     "express": "~4.0.0",
-    "cors": "~2.2.0"
+    "fh-mbaas-api": "~4.7.0",
+    "mocha": "^2.1.0",
+    "request": "~2.40.0"
   },
   "devDependencies": {
     "grunt-contrib-watch": "latest",
@@ -24,6 +25,10 @@
     "grunt-node-inspector": "~0.1.5",
     "grunt-open": "~0.2.3",
     "grunt-plato": "~1.0.0"
+  },
+  "scripts": {
+    "test": "grunt test",
+    "debug": "grunt serve"
   },
   "license": "mit"
 }
