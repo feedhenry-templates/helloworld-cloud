@@ -16,22 +16,27 @@ app.use(mbaasExpress.errorHandler());
 
 var server;
 
-exports.setUp = function(finish){
+exports.before = function(finish){
+  console.log('global before');
+  if (server) return finish();
   var port = 8052;
   server = app.listen(port, function(){
     console.log("App started at: " + new Date() + " on port: " + port);
-    finish();
+    return finish();
   });
 };
 
-exports.tearDown = function(finish) {
+exports.after = function(finish) {
+  console.log('global after');
   mbaasApi.db({
     "act": "close"
   }, function(err) {
     if (server) {
       server.close(function() {
-        finish();
+        return finish();
       });
+    } else {
+      return finish();
     }
   });
 };
