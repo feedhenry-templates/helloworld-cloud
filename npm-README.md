@@ -18,7 +18,7 @@ Run ```npm run debug``` to debug this App locally. This task uses [Node Inspecto
 
 ## test
 
-Run ```npm test``` or ```npm run test``` to run the unit tests for this App.
+Run ```npm test``` or ```npm run test``` to run the unit and accept tests for this App.
 
 ## test coverage
 

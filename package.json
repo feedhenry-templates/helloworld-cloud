@@ -21,8 +21,10 @@
     "supertest": "0.8.2"
   },
   "scripts": {
-    "test": "NODE_PATH=. mocha -A -u exports --recursive test/unit/",
-    "test-cov": "rimraf cov-unit && NODE_PATH=. istanbul cover --dir cov-unit _mocha -- -A -u exports --recursive test/unit/",
+    "test": "npm run unit && npm run accept",
+    "test-cov": "npm run unit-cov && npm run accept-cov",
+    "unit": "NODE_PATH=. mocha -A -u exports --recursive test/unit/",
+    "unit-cov": "rimraf cov-unit && NODE_PATH=. istanbul cover --dir cov-unit _mocha -- -A -u exports --recursive test/unit/",
     "accept": "NODE_PATH=. FH_USE_LOCAL_DB=true FH_SERVICE_MAP={\"SERVICE_GUID_1\":\"http://127.0.0.1:8010\",\"SERVICE_GUID_2\":\"https://host-and-path-to-service\"} mocha -A -u exports --recursive --timeout 10000 test/server.js test/accept/",
     "accept-cov": "rimraf cov-accept && NODE_PATH=. FH_USE_LOCAL_DB=true FH_SERVICE_MAP={\"SERVICE_GUID_1\":\"http://127.0.0.1:8010\",\"SERVICE_GUID_2\":\"https://host-and-path-to-service\"} istanbul cover --dir cov-accept _mocha -- -A -u exports --recursive --timeout 10000 test/server test/accept/ && echo See coverage report at ./cov-accept/lcov-report/index.html",
     "analysis": "rimraf plato && plato --jshint .jshintrc --dir plato lib/**/*.js && opener ./plato/index.html",
