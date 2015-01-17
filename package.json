@@ -25,10 +25,8 @@
     "test-cov": "rimraf cov-unit && NODE_PATH=. istanbul cover --dir cov-unit _mocha -- -A -u exports --recursive test/unit/",
     "accept": "NODE_PATH=. FH_USE_LOCAL_DB=true FH_SERVICE_MAP={\"SERVICE_GUID_1\":\"http://127.0.0.1:8010\",\"SERVICE_GUID_2\":\"https://host-and-path-to-service\"} mocha -A -u exports --recursive --timeout 10000 test/server.js test/accept/",
     "accept-cov": "rimraf cov-accept && NODE_PATH=. FH_USE_LOCAL_DB=true FH_SERVICE_MAP={\"SERVICE_GUID_1\":\"http://127.0.0.1:8010\",\"SERVICE_GUID_2\":\"https://host-and-path-to-service\"} istanbul cover --dir cov-accept _mocha -- -A -u exports --recursive --timeout 10000 test/server test/accept/ && echo See coverage report at ./cov-accept/lcov-report/index.html",
-    "analysis": "rimraf plato && plato --jshint .jshintrc --dir plato lib/**/*.js && npm run open:platoReport",
-    "open:debug": "opener http://127.0.0.1:8080/debug?port=5858",
-    "open:platoReport": "opener ./plato/index.html",
-    "debug": "FH_USE_LOCAL_DB=true FH_SERVICE_MAP={\"SERVICE_GUID_1\":\"http://127.0.0.1:8010\",\"SERVICE_GUID_2\":\"https://host-and-path-to-service\"} node --debug-brk application.js & node-inspector & npm run open:debug",
+    "analysis": "rimraf plato && plato --jshint .jshintrc --dir plato lib/**/*.js && opener ./plato/index.html",
+    "debug": "FH_USE_LOCAL_DB=true FH_SERVICE_MAP={\"SERVICE_GUID_1\":\"http://127.0.0.1:8010\",\"SERVICE_GUID_2\":\"https://host-and-path-to-service\"} node-debug application.js",
     "start": "FH_USE_LOCAL_DB=true FH_SERVICE_MAP={\"SERVICE_GUID_1\":\"http://127.0.0.1:8010\",\"SERVICE_GUID_2\":\"https://host-and-path-to-service\"} nodemon -w . -e js,html,ejs -i public/* application.js"
   },
   "license": "mit"
