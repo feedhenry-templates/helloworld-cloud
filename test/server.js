@@ -28,15 +28,19 @@ exports.before = function(finish){
 
 exports.after = function(finish) {
   console.log('global after');
-  mbaasApi.db({
-    "act": "close"
-  }, function(err) {
-    if (server) {
-      server.close(function() {
+  if (server) {
+    mbaasApi.db({
+      "act": "close"
+    }, function(err) {
+      if (server) {
+        server.close(function() {
+          return finish();
+        });
+      } else {
         return finish();
-      });
-    } else {
-      return finish();
-    }
-  });
+      }
+    });
+  } else {
+    return finish();
+  }
 };
