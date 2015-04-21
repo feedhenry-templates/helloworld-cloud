@@ -1,25 +1,42 @@
 # FeedHenry Hello World MBaaS Server
 
-This is a blank 'hello world' FeedHenry MBaaS. Use it as a starting point for building your APIs. 
+This is a blank 'push hello world' FeedHenry MBaaS. Use it as a starting point for building your APIs.
+It supports CRUD operations on Categories that are used in the console and the mobile app as publish/subscribe
+for the push notifications of interest.
 
-# Group Hello World API
+# Group Push Hello World API
 
-# hello [/hello]
+# category [/category]
 
-'Hello world' endpoint.
+'api' endpoint.
 
-## hello [POST] 
+## category [GET]
 
-'Hello world' endpoint.
+'Category' endpoint.
 
 + Request (application/json)
-    + Body
-            {
-              "hello": "world"
-            }
 
 + Response 200 (application/json)
     + Body
             {
-              "msg": "Hello world"
+              "status": "ok"
+              "data": ["category1", "category2"]
             }
+
+## category [POST]
+
++ Request (application/json)
+    + Body
+        {
+            "name": "new category name"
+        }
+        
++ Response 200 (application/json)
+    + Body
+            {
+                "status": "ok"
+                "message": <entity>
+            }
+            
+## category/:name [DELETE]
+
