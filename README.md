@@ -2,7 +2,7 @@
 
 This is a blank 'push hello world' FeedHenry MBaaS. Use it as a starting point for building your APIs.
 It supports CRUD operations on Categories that are used in the console and the mobile app as publish/subscribe
-for the push notifications of interest.
+for the push notifications of interest.  For more details on using the Push Hello World Template, please consult the [Hello World Push Template](http://docs.feedhenry.com/v3/guides/app_development_push.html) guide.
 
 # Group Push Hello World API
 
