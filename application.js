@@ -5,9 +5,7 @@ var cors = require('cors');
 
 // list the endpoints which you want to make securable here
 var securableEndpoints;
-// fhlint-begin: securable-endpoints
 securableEndpoints = ['/hello'];
-// fhlint-end
 
 var app = express();
 
@@ -24,9 +22,7 @@ app.use(express.static(__dirname + '/public'));
 // Note: important that this is added just before your own Routes
 app.use(mbaasExpress.fhmiddleware());
 
-// fhlint-begin: custom-routes
 app.use('/category', require('./lib/server.js')());
-// fhlint-end
 
 // Important that this is last!
 app.use(mbaasExpress.errorHandler());
