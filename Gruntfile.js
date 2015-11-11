@@ -42,8 +42,8 @@ module.exports = function(grunt) {
         logConcurrentOutput: true
       }
     },
-    env : {
-      options : {},
+    env: {
+      options: {},
       // environment variables - see https://github.com/jsoverson/grunt-env for more information
       local: {
         FH_USE_LOCAL_DB: true,
@@ -75,28 +75,25 @@ module.exports = function(grunt) {
       unit: {
         options: {
           stdout: true,
-          stderr: true,
-          failOnError: true
+          stderr: true
         },
         command: 'env NODE_PATH=. ./node_modules/.bin/mocha -A -u exports --recursive test/unit/'
       },
       accept: {
         options: {
           stdout: true,
-          stderr: true,
-          failOnError: true
+          stderr: true
         },
         command: 'env NODE_PATH=. ./node_modules/.bin/mocha -A -u exports --recursive test/server.js test/accept/'
       },
       coverage_unit: {
         options: {
           stdout: true,
-          stderr: true,
-          failOnError: true
+          stderr: true
         },
         command: [
           'rm -rf coverage cov-unit',
-          'env NODE_PATH=. ./node_modules/.bin/istanbul cover --dir cov-unit ./node_modules/.bin/_mocha -- -A -u exports --recursive test/unit/',
+          'env NODE_PATH=. ./node_modules/.bin/istanbul cover --dir cov-unit ./node_modules/.bin/turbo -- test/unit',
           './node_modules/.bin/istanbul report',
           'echo "See html coverage at: `pwd`/coverage/lcov-report/index.html"'
         ].join('&&')
@@ -104,12 +101,11 @@ module.exports = function(grunt) {
       coverage_accept: {
         options: {
           stdout: true,
-          stderr: true,
-          failOnError: true
+          stderr: true
         },
         command: [
           'rm -rf coverage cov-accept',
-          'env NODE_PATH=. ./node_modules/.bin/istanbul cover --dir cov-accept ./node_modules/.bin/_mocha -- -A -u exports --recursive test/server.js test/accept/',
+          'env NODE_PATH=. ./node_modules/.bin/istanbul cover --dir cov-accept ./node_modules/.bin/turbo -- --setUp=test/accept/server.js --tearDown=test/accept/server.js test/accept',
           './node_modules/.bin/istanbul report',
           'echo "See html coverage at: `pwd`/coverage/lcov-report/index.html"'
         ].join('&&')
@@ -127,22 +123,31 @@ module.exports = function(grunt) {
     },
     plato: {
       src: {
-        options : {
-          jshint : grunt.file.readJSON('.jshintrc')
+        options: {
+          jshint: grunt.file.readJSON('.jshintrc')
         },
         files: {
           'plato': ['lib/**/*.js']
         }
       }
-    }
+    },
+    jshint: {
+      files: ['*.js', 'lib/**/*.js', 'test/**/*.js'],
+      options: {
+        jshintrc: true
+      }
+    },
   });
 
   // Load NPM tasks
-  require('load-grunt-tasks')(grunt, {scope: 'devDependencies'});
+  require('load-grunt-tasks')(grunt, {
+    scope: 'devDependencies'
+  });
+  grunt.loadNpmTasks('grunt-contrib-jshint');
 
   // Testing tasks
-  grunt.registerTask('test', ['shell:unit', 'shell:accept']);
-  grunt.registerTask('unit', ['shell:unit']);
+  grunt.registerTask('test', ['jshint', 'shell:unit', 'shell:accept']);
+  grunt.registerTask('unit', ['jshint', 'shell:unit']);
   grunt.registerTask('accept', ['env:local', 'shell:accept']);
 
   // Coverate tasks
@@ -150,8 +155,6 @@ module.exports = function(grunt) {
   grunt.registerTask('coverage-unit', ['shell:coverage_unit']);
   grunt.registerTask('coverage-accept', ['env:local', 'shell:coverage_accept']);
 
-  // Making grunt default to force in order not to break the project.
-  grunt.option('force', true);
 
   grunt.registerTask('analysis', ['plato:src', 'open:platoReport']);
 
