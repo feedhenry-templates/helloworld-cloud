@@ -91,9 +91,9 @@ module.exports = function(grunt) {
           stdout: true,
           stderr: true
         },
-        command: [
+      command: [
           'rm -rf coverage cov-unit',
-          'env NODE_PATH=. ./node_modules/.bin/istanbul cover --dir cov-unit ./node_modules/.bin/turbo -- test/unit',
+          'env NODE_PATH=. ./node_modules/.bin/istanbul cover  --dir cov-unit ./node_modules/.bin/_mocha -- -u exports -R spec ./test/unit/*.js',
           './node_modules/.bin/istanbul report',
           'echo "See html coverage at: `pwd`/coverage/lcov-report/index.html"'
         ].join('&&')
