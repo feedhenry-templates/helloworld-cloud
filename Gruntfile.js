@@ -84,7 +84,8 @@ module.exports = function(grunt) {
           stdout: true,
           stderr: true
         },
-        command: 'env NODE_PATH=. ./node_modules/.bin/mocha -A -u exports --recursive test/server.js test/accept/'
+        command: 'env NODE_PATH=. ./node_modules/.bin/mocha -A -u exports --recursive test/accept/'
+
       },
       coverage_unit: {
         options: {
@@ -105,9 +106,18 @@ module.exports = function(grunt) {
         },
         command: [
           'rm -rf coverage cov-accept',
-          'env NODE_PATH=. ./node_modules/.bin/istanbul cover --dir cov-accept ./node_modules/.bin/turbo -- --setUp=test/accept/server.js --tearDown=test/accept/server.js test/accept',
+          'env NODE_PATH=. ./node_modules/.bin/istanbul cover --dir cov-accept ./node_modules/.bin/_mocha -- -u exports -R spec ./test/accept/*.js',
           './node_modules/.bin/istanbul report',
           'echo "See html coverage at: `pwd`/coverage/lcov-report/index.html"'
+        ].join('&&')
+      },
+      coverage: {
+        options: {
+          stdout: true,
+          stderr: true
+        },
+        command: [
+          'echo "See full coverage at: `pwd`/coverage/lcov-report/index.html"'
         ].join('&&')
       }
     },
@@ -148,17 +158,17 @@ module.exports = function(grunt) {
   // Testing tasks
   grunt.registerTask('test', ['jshint', 'shell:unit', 'shell:accept']);
   grunt.registerTask('unit', ['jshint', 'shell:unit']);
-  grunt.registerTask('accept', ['env:local', 'shell:accept']);
+  grunt.registerTask('accept', ['jshint', 'shell:accept']);
 
   // Coverate tasks
-  grunt.registerTask('coverage', ['shell:coverage_unit', 'shell:coverage_accept']);
+  grunt.registerTask('coverage', ['shell:coverage_unit', 'shell:coverage_accept', 'shell:coverage']);
   grunt.registerTask('coverage-unit', ['shell:coverage_unit']);
-  grunt.registerTask('coverage-accept', ['env:local', 'shell:coverage_accept']);
+  grunt.registerTask('coverage-accept', ['shell:coverage_accept']);
 
 
   grunt.registerTask('analysis', ['plato:src', 'open:platoReport']);
 
-  grunt.registerTask('serve', ['env:local', 'concurrent:serve']);
-  grunt.registerTask('debug', ['env:local', 'concurrent:debug']);
+  grunt.registerTask('serve', ['concurrent:serve']);
+  grunt.registerTask('debug', ['concurrent:debug']);
   grunt.registerTask('default', ['serve']);
 };
