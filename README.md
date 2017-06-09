@@ -42,7 +42,7 @@ Start MongoDB server with:
 mongod
 ```
 
-By default, the Hello World server will try to access MongoDB on port `11211`, if you are running MongoDB on a different port you should set the `FH_MONGODB_CONN_URL` environment variable to the MongoDB connection URL.
+The Hello World server will try to access MongoDB on the default port `27017`, if you are running MongoDB on a different port you should set the `FH_MONGODB_CONN_URL` environment variable to the MongoDB connection URL.
 
 ### Setup Redis
 

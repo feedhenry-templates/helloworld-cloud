@@ -96,7 +96,7 @@ module.exports = function(grunt) {
           'rm -rf coverage cov-unit',
           'env NODE_PATH=. ./node_modules/.bin/istanbul cover  --dir cov-unit ./node_modules/.bin/_mocha -- -u exports -R spec ./test/unit/*.js',
           './node_modules/.bin/istanbul report',
-          'echo "See html coverage at: `pwd`/coverage/lcov-report/index.html"'
+          'echo "See unit test coverage at: `pwd`/cov-unit/lcov-report/index.html"'
         ].join('&&')
       },
       coverage_accept: {
@@ -108,7 +108,7 @@ module.exports = function(grunt) {
           'rm -rf coverage cov-accept',
           'env NODE_PATH=. ./node_modules/.bin/istanbul cover --dir cov-accept ./node_modules/.bin/_mocha -- -u exports -R spec ./test/accept/*.js',
           './node_modules/.bin/istanbul report',
-          'echo "See html coverage at: `pwd`/coverage/lcov-report/index.html"'
+          'echo "See acceptance coverage at: `pwd`/cov-accept/lcov-report/index.html"'
         ].join('&&')
       },
       coverage: {
@@ -158,17 +158,17 @@ module.exports = function(grunt) {
   // Testing tasks
   grunt.registerTask('test', ['jshint', 'shell:unit', 'shell:accept']);
   grunt.registerTask('unit', ['jshint', 'shell:unit']);
-  grunt.registerTask('accept', ['jshint', 'shell:accept']);
+  grunt.registerTask('accept', ['env:local', 'shell:accept']);
 
   // Coverate tasks
   grunt.registerTask('coverage', ['shell:coverage_unit', 'shell:coverage_accept', 'shell:coverage']);
   grunt.registerTask('coverage-unit', ['shell:coverage_unit']);
-  grunt.registerTask('coverage-accept', ['shell:coverage_accept']);
+  grunt.registerTask('coverage-accept', ['env:local', 'shell:coverage_accept']);
 
 
   grunt.registerTask('analysis', ['plato:src', 'open:platoReport']);
 
-  grunt.registerTask('serve', ['concurrent:serve']);
-  grunt.registerTask('debug', ['concurrent:debug']);
+  grunt.registerTask('serve', ['env:local', 'concurrent:serve']);
+  grunt.registerTask('debug', ['env:local', 'concurrent:debug']);
   grunt.registerTask('default', ['serve']);
 };
