@@ -9,37 +9,19 @@ This is a blank 'hello world' FeedHenry MBaaS. Use it as a starting point for bu
 
 'Hello world' endpoint.
 
-## hello [GET]
-
-+ Request (query string)
-    + Query
-            `?hello=world`
-
-+ Response 200 (application/json)
-    + Body
-            ```
-            {
-              "msg": "Hello world"
-            }
-            ```
-
 ## hello [POST] 
 
 + Request (application/json)
     + Body
-            ```
             {
               "hello": "world"
             }
-            ```
 
 + Response 200 (application/json)
     + Body
-            ```
             {
               "msg": "Hello world"
             }
-            ```
 
 ## Build
 ```shell
