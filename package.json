@@ -2,7 +2,7 @@
   "name": "helloworld-cloud",
   "version": "0.2.0",
   "dependencies": {
-    "body-parser": "~1.0.2",
+    "body-parser": "~1.17.2",
     "cors": "~2.8.3",
     "express": "~4.15.3",
     "fh-mbaas-api": "~7.0.11",

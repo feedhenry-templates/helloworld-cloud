@@ -1,6 +1,8 @@
 # FeedHenry Hello World Cloud App
 [![Dependency Status](https://img.shields.io/david/feedhenry-templates/helloworld-cloud.svg?style=flat-square)](https://david-dm.org/feedhenry-templates/helloworld-cloud)
 
+[![Build Status](https://travis-ci.org/feedhenry-templates/helloworld-cloud.svg?branch=master)](https://travis-ci.org/feedhenry-templates/helloworld-cloud)
+
 This is a blank 'hello world' FeedHenry MBaaS. Use it as a starting point for building your APIs. 
 
 # Group Hello World API
