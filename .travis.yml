@@ -12,3 +12,5 @@ before_install:
   - npm install fh-build -g
   - fh-build template
 install: npm install
+script:
+  - npm test
