@@ -7,6 +7,7 @@ var cors = require('cors');
 var securableEndpoints;
 securableEndpoints = ['/hello'];
 
+
 var app = express();
 
 // Enable CORS for all requests
