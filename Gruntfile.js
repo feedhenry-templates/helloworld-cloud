@@ -37,7 +37,7 @@ module.exports = function(grunt) {
     },
     concurrent: {
       serve: ['nodemon', 'watch'],
-      debug: ['node-inspector', 'shell:debug', 'open:debug'],
+      debug: ['shell:debug'],
       options: {
         logConcurrentOutput: true
       }
@@ -62,15 +62,12 @@ module.exports = function(grunt) {
         }
       }
     },
-    'node-inspector': {
-      dev: {}
-    },
     shell: {
       debug: {
         options: {
           stdout: true
         },
-        command: 'env NODE_PATH=. node --debug-brk application.js'
+        command: 'env NODE_PATH=. node --inspect --debug-brk application.js'
       },
       unit: {
         options: {
@@ -122,10 +119,6 @@ module.exports = function(grunt) {
       }
     },
     open: {
-      debug: {
-        path: 'http://127.0.0.1:8080/debug?port=5858',
-        app: 'Google Chrome'
-      },
       platoReport: {
         path: './plato/index.html',
         app: 'Google Chrome'

@@ -17,7 +17,7 @@ Note that 'grunt serve' supports live reload, i.e. it will monitor for any chang
 
 ## grunt debug
 
-Run ```grunt debug``` to debug this App locally. This task uses [Node Inspector](https://github.com/node-inspector/node-inspector) to debug your application, and will open the Debugger at 'application.js' in Google Chrome. See the documentation for [Node Inspector](https://github.com/node-inspector/node-inspector) for more information on how to use Node Inspector.
+Run ```grunt debug``` to debug this App locally. This task uses [the debug flag of Nodejs](https://medium.com/@paul_irish/debugging-node-js-nightlies-with-chrome-devtools-7c4a1b95ae27) to debug your application.
 
 ## grunt test
 
